@@ -9,7 +9,14 @@ public class PlayerAudioController : MonoBehaviour
     // make sure to keep track of the movement as well !
 
     Rigidbody2D rb; // note the "2D" prefix 
-    
+
+    public AudioSource audioSourceJump;
+    public AudioSource audioSourceFootsteps;
+    public AudioSource audioSourceCrouch;
+    public AudioSource audioSourceCherry;
+    public AudioSource audioSourceLand;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +44,7 @@ public class PlayerAudioController : MonoBehaviour
     
     // trigger your landing sound here !
     public void OnLanding() {
+        audioSourceLand.Play();
         isJumping = false;
         print("the fox has landed");
 	// to keep things cleaner, you might want to
@@ -45,17 +53,25 @@ public class PlayerAudioController : MonoBehaviour
 
     // trigger your crouching sound here
     public void OnCrouching() {
+        audioSourceCrouch.Play();
         print("the fox is crouching");
     }
  
     // trigger your jumping sound here !
     public void OnJump() {
+        audioSourceJump.Play();
         isJumping = true;
         print("the fox has jumped");
     }
 
     // trigger your cherry collection sound here !
     public void OnCherryCollect() {
+        audioSourceCherry.Play();
         print("the fox has collected a cherry");
+    }
+    public void OnStep()
+    {
+        audioSourceFootsteps.Play();
+
     }
 }

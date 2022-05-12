@@ -49,6 +49,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\TriggerCollection.cs" />
      <Compile Include="Assets\Scripts\PlayerAudioController.cs" />
+     <Compile Include="Assets\CrateAudioController.cs" />
+     <Compile Include="Assets\GroundDetector.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CharacterController2D.cs" />
  <Reference Include="UnityEngine">

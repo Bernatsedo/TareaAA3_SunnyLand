@@ -4,74 +4,78 @@ using UnityEngine;
 
 public class PlayerAudioController : MonoBehaviour
 {
-    // keep track of the jumping state ... 
+    AudioSource[] allAudioSources;
+    AudioSource Land;
+    AudioSource Jump;
+    AudioSource Crouch;
+    AudioSource Cherry;
+    AudioSource footsteps;
+   
     bool isJumping = false;
-    // make sure to keep track of the movement as well !
+    bool isMoving = false;
+   
 
-    Rigidbody2D rb; // note the "2D" prefix 
-
-    public AudioSource audioSourceJump;
-    public AudioSource audioSourceFootsteps;
-    public AudioSource audioSourceCrouch;
-    public AudioSource audioSourceCherry;
-    public AudioSource audioSourceLand;
+    Rigidbody2D rb; 
 
 
-    // Start is called before the first frame update
     void Start()
     {
-	rb = GetComponent<Rigidbody2D>();
-	// get the references to your audio sources here !        
+	    rb = GetComponent<Rigidbody2D>();
+        allAudioSources = GetComponents<AudioSource>();
+        Land = allAudioSources [0];
+        Jump = allAudioSources [1];
+        Crouch = allAudioSources [2];       
+        Cherry = allAudioSources [3];
+        footsteps = allAudioSources [4];
+
+
     }
 
-    // FixedUpdate is called whenever the physics engine updates
+    
     void FixedUpdate()
     {
-	// Use the ridgidbody instance to find out if the fox is
-	// moving, and play the respective sound !
-	// Make sure to trigger the movement sound only when
-	// the movement begins ...
+	    float v = rb.velocity.magnitude;
+        if (v>1 && !isMoving && !isJumping)
+        {
+            footsteps.Play();
+            isMoving = true;
 
-	// Use a magnitude threshold of 1 to detect whether the
-	// fox is moving or not !
-	// i.e.
-	// if ( ??? > 1 && ???) {
-	//    play sound here !
-	// } else if ( ??? < 1 &&) {
-	//   stop sound here !
-	// }	
+        }
+		else if (v<1 && isMoving && !isJumping)
+        {
+            footsteps.Stop();
+            isMoving=false;
+
+        }
+        else if (v > 1 && isMoving && isJumping)
+        {
+            footsteps.Stop();
+            isMoving = false;
+
+        }
     }
     
-    // trigger your landing sound here !
-    public void OnLanding() {
-        audioSourceLand.Play();
-        isJumping = false;
-        print("the fox has landed");
-	// to keep things cleaner, you might want to
-	// play this sound only when the fox actually jumoed ...
-    }
 
-    // trigger your crouching sound here
-    public void OnCrouching() {
-        audioSourceCrouch.Play();
-        print("the fox is crouching");
+    public void OnLanding() {
+        isJumping = false;
+        Land.Play();
+        
+        print("the fox has landed");
     }
- 
-    // trigger your jumping sound here !
-    public void OnJump() {
-        audioSourceJump.Play();
+    public void OnJump()
+    {
         isJumping = true;
+        Jump.Play();
         print("the fox has jumped");
     }
-
-    // trigger your cherry collection sound here !
+    public void OnCrouching() {
+        Crouch.Play();
+        print("the fox is crouching");
+    }
+  
     public void OnCherryCollect() {
-        audioSourceCherry.Play();
+       Cherry.Play();
         print("the fox has collected a cherry");
     }
-    public void OnStep()
-    {
-        audioSourceFootsteps.Play();
-
-    }
+    
 }

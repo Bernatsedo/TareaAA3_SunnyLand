@@ -631,8 +631,8 @@ GameObject:
   - component: {fileID: 820667361}
   - component: {fileID: 820667360}
   - component: {fileID: 820667363}
-  - component: {fileID: 820667362}
   - component: {fileID: 820667364}
+  - component: {fileID: 820667362}
   - component: {fileID: 820667359}
   m_Layer: 8
   m_Name: Player
@@ -910,11 +910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff38c26450a52ed05a8b19784be5ec09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSourceJump: {fileID: 820667361}
-  audioSourceFootsteps: {fileID: 820667362}
-  audioSourceCrouch: {fileID: 820667363}
-  audioSourceCherry: {fileID: 820667364}
-  audioSourceLand: {fileID: 820667360}
 --- !u!82 &820667360
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1315,7 +1310,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1021746430600935703, guid: 34af41de43c975546bef386bccd30d63,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2291acef8047eb04982edf5faeac3545, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1740,8 +1735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c0638b716b2d449a02157eeaca3c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSourceWoimp: {fileID: 882542259}
-  audioSourceWorumb: {fileID: 882542258}
 --- !u!1 &981602203
 GameObject:
   m_ObjectHideFlags: 0

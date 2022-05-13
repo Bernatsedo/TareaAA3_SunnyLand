@@ -13,7 +13,10 @@ public class PlayerAudioController : MonoBehaviour
    
     bool isJumping = false;
     bool isMoving = false;
-   
+
+
+    float jumpPitch = 1.0f;
+    float landPitch = 1.0f;
 
     Rigidbody2D rb; 
 
@@ -57,6 +60,17 @@ public class PlayerAudioController : MonoBehaviour
     
 
     public void OnLanding() {
+        int randomNumber = Random.Range(0, 100);
+
+        Debug.Log(+randomNumber);
+        float randomModifier = Random.Range(0.2f, 3.0f);
+        float finalPitch = landPitch + randomModifier;
+
+        if (randomNumber < 50)
+        {
+            Land.pitch = finalPitch;
+
+        }
         isJumping = false;
         Land.Play();
         
@@ -64,6 +78,17 @@ public class PlayerAudioController : MonoBehaviour
     }
     public void OnJump()
     {
+        int randomNumber = Random.Range(0, 200);
+
+        Debug.Log(+randomNumber);
+        float randomModifier = Random.Range(0.2f, 1.8f);
+        float finalPitch = jumpPitch + randomModifier;
+
+        if (randomNumber < 100)
+        {
+            Jump.pitch = finalPitch;
+
+        }
         isJumping = true;
         Jump.Play();
         print("the fox has jumped");
